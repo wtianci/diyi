@@ -1,0 +1,1733 @@
+package biji;
+
+public class Fuxi {
+	
+/**
+ * * java包：Util   lang    io  
+	 * 类：HashSet    TreeList    String  数组     Scanner   Object   Exception（异常）
+	 * 		Array    data     System
+	 * 		包装类
+	 * 接口：set    list   map    collection   Iterator   Runnable
+ * ···Java的概述：面向对象的，多线程的，安全的，健壮的，跨平台的，开源的，高效的，简单的
+ * ···JVM的运行原理：通过类装载器寻找并装载.class文件-对.class文件进行字解码校验
+ * 					-通过翻译器将.class文件翻译成计算机语言，
+ * 					-与操作平台进行交互-自动垃圾回收内存管理
+ *··········int [] w={1,2,43,42,2,1,2,31,2,2};
+			System.out.println(w);//输出的是数组的首地址
+			 
+ * JDK开发工具包
+ * JRE开发环境
+ * JVM虚拟机
+ * 
+ * 计算机语言的转换
+ * 十进制转二进制
+ * 47转二进制
+ * 128    64     32    16     8     4     2     1 
+ *               1     0      1     1     1     1
+ * 包名：全部小写   
+ * 类名：全部单词首字母大写       
+ * 方法名：变量i   当有多个单词时，从第二个单词开始首字母大写isTrue
+ * 常量：全部单词大写，当有多个单词时用_分隔
+ * 变量：在程序运行中可以改变的量       本质：内存中的一个存储单元
+ * 常量：在程序运行中不可以个改变的量                                         （ 全局变量      局部变量 ）
+ * 变量的声明与创建 赋值                           常量的声明与创建
+ * int i=1 ;                final i=1;  
+ * 变量先声明后创建赋值
+ * int i; 
+ * i=1;
+ *    java中的数据类型
+ * 1.基本数据类型
+ *     整数：      byte    short   int   long    
+ *     浮点型：(小数)   float     double
+ *     布尔型：boolean      false错误     true正确   
+ *     字符型：char  ''   能存储一个汉字  因为汉字是一个字节
+ * 2.引用数据类型
+ *     String    StringBuffer       StringBuilder    Arrays数组      类        接口
+ *···类型的转换
+ *      大转小       long---int 
+ *      int a=1;   long w=a;
+ *      小转大       int---long 
+ *      long w=3;    int a=(int)w;
+ *···运算符
+ *     赋值运算符：=   +=   -=    *=   /=    %=        等号右边的赋值给等号左边的       
+ *     比较运算符：<   >    <=    >=    ==（=是赋值）  
+ *               ==比较基本数据类型比较的是值    比较引用数据类型比较的是内存地址
+ *                 （.equals()比较引用数据类型比较的是值  ）
+ *     位运算符    ：|（或）一真即真，全假为假          &（与）全真即真，一假为假         效率最高的 <<(左移)向左移N位*    >>/
+ *     				两边可放数字 用来做运算
+ *     逻辑运算符：||（或）一真即真，全假为假        &&（与）全真即真，一假为假
+ *     三目运算符：(布尔值或者布尔表达式)?结果1：结果2     布尔表达式如果正确执行?  如果错误执行：
+ *···流程控制
+ *    顺序流程
+ *    选择流程
+ *      if格式
+ *          if(布尔值或者布尔表达式){代码块}
+ *           if(){}else(){} 如果为true，执行if中的代码
+ *                      如果为false，执行else中的代码
+ *                      两者不会同时进行
+ *           if(){}else if(){}else if(){}else{}.......
+ *           if嵌套    if(){ if(){if(){ }}}if的三种格式都可以套       
+ *       switch格式      	   
+ *     	switch(){    （）括号里可以放byte  short   int   char   String(7版本之后才可以用在switch)
+ *       		case 1:            搭配break;使用
+ *       	   	    default:            搭配break;使用	}  
+ *      循环流程  
+ *         for循环        
+ *              格式for(初始表达式;判断表达式;变量的改变){
+ *                          循环的代码                }   
+ *              for的常见格式   
+ *                 for(;;){} 正确是一个死循环             
+ *                 for(int i=0;;){}死循环
+ *                 for(int i=0;i<10;i--){}死循环
+ *                 for(int i=0;i<10;i++){}最常用
+ *              for求1到100的和
+ *          		int w=o;
+ *          		for(int i=o;i<=100;i++){
+ *          				w=w+i;
+ *          			    }System.out.println(w);     
+ *              for嵌套
+ *         		    for(){    外循环循环一次,内循环循环完毕
+ *         			for(){
+ *         					}}
+ *         while循环                    先判断后执行            一般适用与不知道循环次数的
+ *         		 while(布尔值或者布尔表达式){
+ *         				循环的代码	     }
+ *         	    关闭while的方法	
+ *               1.使用break;关闭                          2.使用w=false;关闭                             3.不满足条件时自动关闭
+ *         do{}while()循环         先执行后判断        至少执行一次
+ *                do{执行的代码}while(布尔表达式或者布尔值)
+ *         for和while的区别
+ *          for通常在知道循环次数的情况下使用
+ *          while通常使用在不知道循环次数的时候
+ *···Scanner键盘扫描类       需要导包
+ *          格式Scanner i=new Scanner(System.in);
+ *    		String a=i.next();用于接收用户输入的字符串    int a=i.nextInt();用于接收用户输入的数字      
+ *···流程的跳转
+ *       		break:
+ *             1.switch-case-break   结束整个是switch
+ *             2.可以用在循环中（for    while    do-while）      
+ *             3.不可以在单独的if中,当if套在循环中可以使用在break;
+ *       continue:
+ *       		continue:结束一次循环，开始下一次循环
+ *       return:
+ *       		结束程序       返回结果
+ *···new:关键字       创建对象
+ *				1.分配内存
+ *···构造函数  又叫构造器又叫构造方法			2.初始化对象的静态属性
+ *     		构造方法的方法名与类名相同
+ *      	构造方法没有返回值类型,也没有void
+ *      	构造方法可以不写，系统会默认
+ *     		构造方法 主要作用是完成对对象的初始化工作
+ *     		初始化对象的属性
+ *     		每new一次对象，就走一次构造函数
+ *···this代表 本身  代表当前对象 
+ *···四种修饰符
+ *      		private  私有的          同一类中
+ *              default(friendly)默认的        	              同一包 同一类中
+ *				protected受保护的       同一包 同一类中  不同包中的子类
+ *				public公共的  		    同一包 同一类中  不同包中的子类    不同包的非子类
+ * ···成员方法
+ * 				1.无参无返回值
+ * 					public void eat(){System.out.println("123")}
+ * 				2.无参有返回值   必须搭配return
+ * 					public int test(){int i=9; return i;}
+ * 				3.有参无返回值
+ * 					public void qwe(int w){System.out.println()}
+ * 				4.有参有返回值
+ *      	方法的定义
+ *      		控制修饰符   一般修饰符   返回值类型  方法名称（参数列表）   throws异常     方法体
+ *···static:静态的
+ *     		static可以修饰成员变量（实例变量），成为一个静态变量（类变量），通过类名.调用
+ *     		static不能修饰局部变量
+ *     		static可以修饰一个方法，成为一个静态方法（类方法），通过类名.调用
+ *     		静态方法内部只能访问静态的东西
+ *      	static修饰的方法中不能使用this（本对象）和super（父类的）关键字
+ * ···值传递
+ *      	值传递传递的是值的复制
+ *      	传递前后没有关系
+ *      	其中一个改变不会影响另一个
+ *      	适用：基本数据类型 字符串常量（String str+"qwe"）
+ *···引用传递  
+ *			传递的是内存地址      
+ *			一个变都变
+ *			适用：除了基本数据类型，字符串常量之外的所有
+ *···面向对象三大技术特征
+ *		封装
+ *		继承
+ *		多态      
+ *···封装：   使用private进行封装
+ *···final:一般修饰符  最后的  最终的     
+ *     final修饰的成员变量（成为常量），必须在声明的同时直接赋值
+ *     如果没有赋值，只能在构造函数中直接赋值
+ *     final修饰的类不能被继承
+ *     final修饰的方法，不能被重写
+ *···finally
+ *		异常的捕获
+ *			try{}catch(){}finally{关闭流、文件、数据库连接}
+ *···Finalize：垃圾回收的
+ *···面向对象的基础
+ *		编程思想
+ *		相对于面向过程而言
+ *		面向过程：强调事件   一切算法和实现细节
+ *		面向对象：强调事物  具备功能的对象	
+ *···面向对象的特点
+ *			更符合人类的思想
+ *			专人做专事
+ *			强调合作   
+ *			复杂的事情简单化
+ *···现实生活中的类和对象：
+ *			类：具有相同特征的一组事物  抽象的  没有功能
+ *			对象：某各类中具体存在的实实在在的一个个体   具体的  具备功能      
+ *JAVA中的类和对象
+ *			类：是一种引用数据类型
+ *			对象：运行在堆内存 中的某个类的个体（实例）
+ *			Bird b=new Bird();
+ *···对象的组成
+ *			成员变量； 类变量（static）
+ *			成员方法；类方法（static）
+ *		构造函数: 特点     
+ *      	可以不写，系统默认提供
+ *      	方法名称与类名一致
+ *      	没有返回值类型，也没有void
+ *      	不是显式调用
+ *      	作用：初始化对象的属性
+ *···对象的生命周期
+ *			创建--使用--销毁（JVM）
+ *		
+ *···继承概念：
+ *		当许多类有共同的属性和行为时，将这些相同
+ *		   的东西放在一个类中，这个类就是父类
+ *		通过extends实现继承
+ *		Pig extends Animal
+ *		子类 extends 父类
+ *		String 不能被继承 因为被 final 修饰的
+ *	     特点：
+ *		只支持单继承，不支持多继承
+ *		支持多层继承
+ *		子类能够继承父类所有的属性和方法
+ *		（包括私有的也可以继承到，
+ *		因为是私有的所有访问不到）      
+ *···构造函数不能被继承  能被重载  不能被重写（前提不能被继承）
+ *			public Pig(){
+			super();使用父类构造函数
+			默认提供super();
+			super()只能放在子类构造函数的第一行
+		}
+ *···多态		继承是多态的前提
+ *			继承：当许多类有共同的属性和行为时，将这些相同的东西放在一个类中，这个类就是父类。	   
+ *			OverLoad 方法的重载：在同一类中方法名称相同，参数列表不同 （-顺序不同-个数不同-类型不同-）与返回值无关     	
+ *       						String  w=new String("ad");体现了构造函数的重载		
+ *			多态：是一种事物的多种形态
+ *    多态的体现
+ *      	没有重载
+ *       	OverWrite方法的重写（覆盖）：要在父子类中、方法名相同、参数列表相同、返回值类型相同、
+ *       			  子类重写的方法，他的修饰符必须大于等于父类的修饰符
+ *       	上溯造型：父类的引用指向子类的对象
+ *···抽象类：将许多类的共同行为单独放在一个类中，抽象成一个模版
+ *		抽象类使用 abstract 关键字修饰
+ *     抽象方法
+ *		方法被abstract修饰，则成为抽象方法
+ *		抽象方法没有方法体
+                  抽象类的特点
+ *		1.不能实例化，也就是不能NEW
+ *		2.抽象类有构造函数   不能被实例化
+ *		3.抽象类中可以有普通方法
+ *		4.抽象类中可以有抽象方法
+ *		5.抽象类中可以没有抽象方法
+ *		6.有抽象方法的类一定是抽象类      
+ *	        抽象类如何使用？
+ *		子类继承一个抽象的父类，要莫 重写其中所有的抽象方法
+ *		要莫该子类成为一个抽象类
+ *·····接口        实际生活中统一的规范                
+       
+ *		概念：接口是一种特殊的抽象类
+ *			由常量和方法组合起来
+ *		特点：接口中的所有方法都是抽象的      接口不能实例化  不能new  接口没有构造函数
+ *		接口的使用：使用interface关键字表示接口
+ *		  1.通过类可以实现多个接口，并且重写其中所有的方法
+ *			class类名implements接口名称	
+ *		  2.接口可以多继承接口
+ *				接口     extends 接口1  接口2 
+ *		  3.类  继承父类  实现多个接口   （类的定义   控制修饰符、class、类名、继承父类 实现接口{}）
+ *		接口与抽象类的异同：
+			相同：共性的行为放在一起
+			不同：
+     			抽象类可以有普通方法，接口中全部是抽象方法
+     			抽象类的使用：子类继承（单继承）
+     			接口的使用：接口继承多个接口
+                类实现多个接口
+                类  继承   父类    实现    多个接口
+     			抽象类是一个特殊的成员方法
+     			接口是一个特殊的抽象类
+ *···运行时异常
+ *		ArrayIndexOutOfBoundsException
+ *		                    数组 下标越界异常
+ *		InputMismatchException
+ *        输入   不匹配          异常
+ *        NullPointerException    错会出现在点之前
+ *        空指针异常
+ *			ArithmeticException
+ *				算数异常
+ *			java.lang.ClassCastException
+ *			类型转换异常
+ *···非运行异常
+ *			解析异常ParseException
+ *···异常的体系结构
+ *			最大的异常Throwable(父类)
+ *		Error(错误)              Exception(异常)
+ *	           很严重的                                                   程序员能够处理掉的问题											
+ *    程序员很难处理的问题                                处理异常后程序会继续执行
+ *     JVM会选择停止运行
+ *								运行时异常（不受检查的异常）    
+ *                              非运行时异常（受检查的异常）
+ *···异常的处理方法
+ *		异常的捕获
+ *			try{可能出现的异常代码}catch(可能出现的异常的类型 异常对象){对异常的处理}
+ *			如果try{}中可能出现  多个异常，则有几个异常，就跟几个catch(){}
+ *			try{}catch(){}catch(){}
+ *			try{}catch(){}finally{一定都会执行      关闭流、关闭文件、关闭数据库连接}
+ *			try{}finally{不能识别try中的}
+ *		异常的抛出    两个搭配使用
+ *			throw：抛出异常
+ *			throws异常：声明可能会抛出的异常            
+ *···集合
+ *		三大集合的特点：
+ *		1.set：无序，不重复
+ *		2.List：有序，可重复的，有索引的从0开始
+ *		3.Map：键值对对应，键不可重复（值会被覆盖）值可以重复（多个键指向一个值）
+ *		  Set接口：实现类HashSet  TreeSet
+ *			HashSet:无序    不可重复    可以存放Object
+ *			TreeSet:自然排序       不可重复     不能在一个集合中
+ *				如何判断两个元素是否重复
+ *					.equals()  结果为true
+ *					.hashCode()   码值一样
+ *		  List接口：实现类ArrayList       LinkedList
+ *			ArrayList:底层实现是一个可变长的数组   查询       修改
+ *				List<Integer>list=new ArrayList<Integer>();
+					list.add(1);//增			 
+						list.get(2);//查			
+							list.set(3, 5);//改
+								list.remove(1);//删除
+									list.removeAll(list);//删除全部
+							  			Collections.sort(list);//排序
+				字符串的长度  String s="abc"                s.length()方法
+				数组的长度     int [] arr={1,1,2,3,4};		arr.length属性
+				集合的长度      List<Integer>list=new ArrayList<Integer>();      list.size()方法
+						System.out.println(list);
+ *			LinkedList:底层实现的是链表                   增加       删除         
+ *		 Array和ArrayList的区别
+ *			Array（数组）           长度固定          数组没有方法            基本数据类型     引用数据类型（对象）
+ *			ArrayList(集合) 长度可变长的          集合有很多方法                                      引用数据类型（对象）
+ *       Map：接口    实现类：HashMap     TreeMap
+ *     		HashMap:通过哈希算法来存储元素        不排序
+ *     		TrreMap：通过属性结构来存储元素        对键进行自然排序
+ *     	迭代器：
+ *     		.hashNext()
+ *     		.next()
+ *     5.Iterator和ListIterator的区别是什么？
+ *	下面列出了他们的区别：
+ *	Iterator 可用来遍历 Set 和 List 集合，但是 ListIterator 只能用来遍历 List 。
+ *	Iterator 对集合只能是前向遍历，ListIterator 既可以前向也可以后向。
+ *	ListIterator 实现了 Iterator 接口，并包含其他的功能，比如：增加元素，替换元素，获取前一个和后一个元素的索引，等等。
+ *			Set r=w.keySet();
+ *		for(Object y:r){//遍历出代表键的y
+ *			System.out.println(w.get(y));//然后输出
+ *		}
+ *		Set q=w.keySet();
+ *		Iterator e=q.iterator();
+ *		while(e.hasNext()){
+ *	 		Object p=e.next();//通过迭代器遍历出代表键的p
+ *			System.out.print(w.get(p));//然后输出
+ *···常用类
+ *		标准输入流System.out(java中只有一个标准输出流  屏幕 )
+ *		标准输出流System.in（Java中只有一个标准输入流    键盘）
+ *		错误输出流System.err
+ *		退出系统    System.exit(0)
+ *		垃圾回收    System.gc()   //GC是一个守护线程
+ *		获得系统当前时间System.currenTimeMillis()毫秒
+ *···Object所有类的父类	
+ *			.toString()方法：返回该对象的字符串表示
+ *			.equals()方法：底层实现的是==（==比较的内存地址）		
+ *				在String   Integer等这些类中，继承自
+ *···XML        dom4j
+ *		读文件
+ *		1.解析器SAXReader
+ *					SAXReader   sr=new SAXReader();
+ *		2.找到你需要进行解析的xml文件File
+ *					File file=new File("文件路径");
+ *		3.将xml文件--通过解析器--变成dom4j可以认识的一个文档Document
+ *			Document doc=sr.read(file);
+ *		4.读取根节点  getRootElement()
+ *		5.通过跟节点来读取子节点 element（"石家庄"）     elements（）
+ *		6.通过子节点取到属性值  attributeValue("id")l
+ *		7.通过子节点取到文本值   elementText("特点")
+ *		写文件
+ *		 1.创建一个doc：通过DocumentHelper类来创建一个Document对象
+ *				Document doc=DocumentHelper.createDocument();
+ *		   2.为doc文档添加根节点：
+ *				Element root=doc.addElement("中国");
+ *		//3.通过根节点为doc文档添加子节点：
+ *				Element sjz=root.addElement("石家庄");
+ *		//4.为石家庄添加id属性   文本值
+ *				sjz.addAttribute("id", "1");
+				sjz.addElement("特点").addText("是一个美丽的雾都");
+				sjz.addElement("美食").addText("大杂烩");
+ *															设置格式
+													OutputFormat of=OutputFormat.createPrettyPrint();
+															设置编码格式
+													of.setEncoding("UTF-8");
+															设置要缩进
+													of.setIndent(true);
+														设置缩进多少距离
+													of.setIndent("  ");
+														设置需要换行
+													of.setNewlines(true);
+		//	doc--写入xml
+		//6.创建一个xml文件：
+		 		File  file=new File("中国.xml");
+		//7.如何写入xml中         程序到文件：输出流   FileOutputStream(java)
+		 		FileOutputStream fos=new FileOutputStream(file);
+		//8.创建一个dom4j为我们提供的流                   XMLWriter
+		        XMLWriter xw=new XMLWriter(fos,of);
+		//9.写文件 doc到xml            .write()
+		 		xw.write(doc);
+ *	}
+ *···数据库
+ *		SQL：四种
+ *		DDL：数据定义语言（创建数据库  查询所有的数据库）
+ *		DML：数据操作语言  增删改（数据）
+ *		DQL：数据查询语言   查询（数据）
+ *		DCL：数据控制语言
+ *		选择数据库的标准：成本，用户量，安全性
+ *···数据库常见的问题
+ *		Duplicate entry '2' for key 'PRIMARY'	
+ *			主键不能重复
+ *		Column count doesn't match value count  at   row 1
+ *		     字段        数量            不             匹配         值           数量
+ *		Data too long for column  名称   at  row 1
+ *		数据         太       长                     字段                      
+ *数据库的方法
+ *		转中文    set names gbk;
+ *		展示masql中的所有数据库  		show databases;
+ *		使用数据库					use 库名;
+ *		创建数据库的名称				create database 库名;
+ *								create database if not exists 库名;
+ *		查询数据库的编码格式			show variables like '%character%';
+ *		展示表格式					describe 表名;(desc)	
+ *		展示数据库中的所有表			show tables;
+ *		创建表					create table 表名(
+ *								id int not null   auto_increment,
+ *								name varchar(10),
+ *								primary key(id)			
+ *								);
+ *		添加数据					insert into 表名(列名1，列名2....)values(1,'',.....);
+ *		查询表格全部信息				select * from 表名;
+ *		删除指定表					delete from 表名; (表结构仍然存在)
+ *		删除表结构					drop table 表名 ;      (删除一个表：表结构 表中的数据)
+ *		删除数据库					drop database 库名;
+ *		查询表中id为2的所有			select * from 表名 where id=2;
+ *		并且 and   或 or
+ *		select 要查的东西 from 表名  where 条件;
+ *		查询表中名字叫张三的所有信息         select * from 表名  where name='张三';
+ *		查询表中名字叫张三的性别和年龄		select sex,age from 表名   where name='张三';						
+ *		查询表明中名字为张二并且性别为男的所有信息		select * from 表名 where name='张二'and sex='男';
+ *		查询表中id为4或者sex为男的所有信息			select * from 表名 where id=4 or sex='男';
+ *		查询表中id从2到10的所有信息				select * from 表名 where id>=2 and id<=10;
+ *											select * from 表名 where id between 2 and 10;
+ *		查询表中id不在2-5的所有信息			select * from 表名 where id not between 2 and 5;
+ *		查询表中id为2或3或3或4或6的所有信息		select * from 表名 where id=2 or id=3 or id=4 or id=6;
+ *										select * from 表名 where id in(2,3,4,6);
+ *		查询表中age不为23的所有数据			select * from 表名 where age!=23;
+ *		查询表中age为null的所有数据			select * from 表名 where age is null;
+ *		查询表中age不为null的所有数据			select * from 表名 where age is not null;
+ *		查询表中age不为null的所有数据			select * from 表名 where age is not null;
+ *		查询表中所有姓王的人的所有信息			select * from 表名 where name like '王%';
+ *		查询表中所有以二结尾的人的所有信息		select * from 表名 where name like '%王';
+ *		查询表中所有名字包含王的人的所有信息		select * from 表名 where name like '%王%';
+ *		查询表中所有姓王的并且 以二结尾人的所有信息	select * from 表名 where name like '王%二';
+ *										select * from 表名 where name like '王%' and name like '%二';
+ *		添加表结构（增加一列）   				alter table 表名    add column 列表名  列表类型(长度);
+ *		删除表结构（删除一列）				alter table 表名  drop column 列表名;
+ *		删除表中的数据    select 改成 delete 全部适用（全部删除不带*）
+ *		修改表中的数据	update 表名 set 字段=值,字段=值,....where 条件;
+ *	          聚合函数  select sum求和(age) from 表名;平均值 avg   最大值 max   最小值 min  count    
+ *				select sum(age) as 年龄之和   from tb_person;
+ *		查询表中id为5的这个人的所有信息   id:编号   name:姓名  sex:性别  age:年龄  address地址
+ *		select id as 编号,name as 姓名,sex as 性别,age as 年龄,address as 地址 from 表名 where id=5;
+ *				as：重命名     主键：唯一可以标识一条数据的某个字段     （外键）
+ *		判断为为不为空的sql语句			为null	select * from  表名  where id  is null;
+ *							                     不为null	select * from  表名  where id  id  not null;
+ *		显示给定的数据					select * from  表名	where  sex='男' limit 6;
+ *		模糊查询	（%任意长度的字符串）		select * from  表名	where  name='王%';
+ *				（_一个字符）			select * from  表名      where  name='王_';
+ *		SQL语句顺序   where      group by分组      having筛选     order by排序
+ *		分组count()求条数,个数		分组查询，分组后筛选查询
+ *			select count(*)  as 人数,grade_id as 年级ID   from 表名	where sex='男'（判断条件）		
+ *					group by grade_id（根据group by分组）having count(*)>=3（根据count(*)>=3筛选）;
+ *		升序（默认是升序）				select * from  表名	order by 字段名    asc;
+ *		降序					                                      		select * from  表名	order by 字段名	desc
+ *						例子
+ * 						select  需要显示的内容,count(*)多少条数据		第yi张表,第er张表
+ * 						where  yi.id=er.id
+ * 						group by  yi.id    根据一的id进行分组
+ * 						order by count(*) desc,yi.id asc       
+ * 						 根据count(*)条数进行下降排序如果有相同的数据则根据yi.id进行升序   
+ * 
+ *		去重复数据		select count (distinct（去重复数据）staff_id) from 表名
+ *
+ *
+ *
+ *	·····多个表的连接
+ *		内连接查询：	select *（需要查询展示的内容） from student（第一张表名）   inner join score（第二张表名）   
+ *					on  student.student_id=score.student_id;
+ *				where:方法
+ *					select *（需要查询展示的内容） from	student（第一张表名）,score（第二张表名）
+ *					where   student.student_id=score.student_id;
+ *		左外查询：		左边是主表 根据主表的数据去匹配从表的内容（多个表也一样只有一个主表）
+ *					select *（需要查询展示的内容） from student（第一张表名）   left join score（第二张表名）
+ *					on  student.student_id=score.student_id;			
+ *		右外查询：		右边是主表根据主表的数据去匹配从表的内容（多个表也一样只有一个主表）
+ *					select *（需要查询展示的内容） from  student（第一张表名）  right join score（第二张表名）
+ *					on  student.student_id=score.student_id;
+ *
+ *···java中的数据类	
+ *		数值型：
+ *			int      整数       id int(3) 表示这个数字最多支持3位 最大数就是999
+ *			double   小数       double(5,2)  5：表示  整数部分+小数部分  位数最多为5位
+ *									2：表示  必须有两位小数        最大值：999.99
+ *		字符串型：
+ *				char:定变长字符串
+ *			varchar :可变成字符串
+ *		日期/时间型：
+ *			date:yyyy-MM-dd
+ *			datetime:yyyy-MM-dd HH:mm:ss
+ *			时间字符串转换的方法
+ *				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-HH-dd");	
+ *							时间转字符串   sdf.format(date);
+ *							字符串转时间   sdf.parse(date);
+ *···数据库连接
+		  1.导入MYSQL的驱动
+					Class.forName("com.mysql.jdbc.Driver");
+		  2.使用DriverManager类加载驱动，并获得数据连接  Connection类型
+					Connection    conn=DriverManager.getConnection
+					("jdbc:mysql://localhost:3306/库名", "mysql的用户名", "mysql的密码");
+			 		这是mysql数据库的路径：固定写法
+		 			localhost：代表本机ip地址
+		 			3306：代表mysql的默认端口号
+		    3.通过数据连接conn，获得一个Statement对象，可以执行SQL语句
+					Statement    st=conn.createStatement();
+			4.SQL语句
+			 		String s="insert into tb_person values(null,'王盛','男',15,'第三大陆')";
+			5.执行SQL语句
+					int i=st.executeUpdate(s);     通过i判断有没有增加成功
+					executeUpdate的返回值是int类型的    i代表增入了几条数据
+			6.关流
+					if(st!=null){st.close();}
+					if(conn!=null){conn.close();}
+ *···SQL语句
+ *		PreparedStatement   可以预编译SQL语句
+ *		PreparedStatement   可以执行带参的SQL语句
+ *
+ *		Statement不可以预编译SQL语句
+ *		Statement不可以执行带参的SQL语句
+ *		Statement可以执行简单的增删改查语句（写死了的） 也可以执行带参的，但是很麻烦
+ * 			
+ * 			//rs:结果集中存放的是数据
+ *		     //通过rs得到表结构：
+ *		     ResultSetMetaData rsmd=rs.getMetaData();
+ *		     //展示查到的每一条数据中有几个字段
+ *		   System.out.println(rsmd.getColumnCount());
+ *	  		 for(int i=1;i<=rsmd.getColumnCount();i++){
+ *			   System.out.println(rsmd.getColumnName(i));
+ *		   }
+ *			设置：事务的自动提交   true：自动提交    false：手动提交
+ *  			conn.setAutoCommit(false);
+ *			手动提交事物
+ *			conn.commit();
+ *~~~~~HTML		
+ *			<form>
+ *			<form action="地址" method="get,post">
+ *			<input type="(单行文本框 text、password密码框、checkbox复选框、radio单选按钮、
+ *					submit提交按钮、reset重置按钮、button自定义按钮、file文件域、hidden隐藏域)"
+ *					readonly:只读性        disabled：禁用的
+ *			<textarea>多行文本标签
+ *			<select>和<option>项目选择标签
+ *		text-align: left;文本向左对齐
+ *		line-height: 28px;行高度
+ *		letter-spacing: 5px;字间距
+ *		text-decoration:文本修饰   underline 下划线
+ *		white-space: nowrap禁止文字自动换行
+ *		background：背景 color 颜色orange：橙色 	 image图片url(../img/bg.png)图片路径   
+ *		background-repeat: no-repeat不平铺;   x轴坐标40px(x) 35px(y)
+ *		background-position: 60px(x) 60px(y);平移距离
+ *		list-style:列表 格式  none不显示;    
+ *		float:浮动  left向左;
+ *		hover鼠标悬浮   link默认  visited已访问过   active点击
+ *		border：边界	solid：实线
+ *······超链接
+ *		<a href="文件位置" target="_self">可以是文字和图片</a>   默认是_self在本窗口打开
+ *			默认是_self在本窗口打开      _blank新窗口打开	_parent在父框架中打开	_top在最外层框架中打开
+ *			锚点
+ *			设置锚点<a name="锚点名称"></a>
+ *			指定锚点<a href="网页路径#锚点名称"> 如果链接本网站的锚点<a href="锚点名称">
+ *······表格
+ *		<table>表属性：
+ *			width宽度	height高度	bgcolor背景颜色	background背景图片
+ *			border边框大小		cellpadding单元格填充大小	cellspacing单元格间距	align水平对齐
+ *		<tr>行属性：
+ *			width宽度	height高度	bgcolor背景颜色	background背景图片		align水平对齐
+ *		<td>行属性：
+ *			width宽度	height高度	bgcolor背景颜色	background背景图片		align水平对齐
+ *			rowspan合并纵向单元格		colspan合并横向单元
+ *······框架
+ *		<frameset>
+ *			rows设置上下拆分框架 	rows设置的值是上下框架的高度 
+ *			cols设置左右拆分框架		cols设置的值是左右拆分的宽度
+ *		<frame>
+ *			name设置框架的名称	src设置框架中网页的路径	noresize不允许用户调整框架的大小
+ *			scrollong设置框架中的滚动条（auto自定，yes强制显示滚动条，no强制不显示滚动条）
+ *			<frameset cols="120，*，120">
+ *			<frame name="left" src="网页路径" />
+ *			<frame name="zhong" src="网页路径" />
+ *			<frame name="right" src="网页路径" />
+ *        </frame>
+ *		</frameset>
+ *······表单<form>
+ *			属性：name表单名字	action程序路径提交表单执行此程序 
+ *		     method：get和post
+ *		单行文本框标记<input type="text"/>
+ *		密码框控件<input type="password"/>
+ *			属性：name控件名	value文本框内默认值	  size文本框宽度	maxlength允许输入的最多字符数              
+ *		多行文本框控件<textarea></textarea>
+ *			属性：name控件名	rows多行文本框的行数		cols多行文本框的宽度		
+ *			wrap多行文本框的换行方式（默认自动换行，如果设置为off则不自动换行）
+ *		单选按钮控件<input type="radio" />
+ *			属性：name控件名	value内置值	checked设置为默认选中
+ *		复选框按钮控件<input type="checkbox" />
+ *			属性：name控件名(一组复选框名称必须保持一致)	value内置值	checked设置为默认选中
+ *		列表框控件<select><option>
+ *			select属性:name控件名	size显示的行数	  multiple允许多选
+ *			option属性:value内置值		selected默认选中
+ *		文件域控件<input type="file" />
+ *			属性：name控件名	size控件宽度
+ *		按钮控件
+ *			提交按钮<input type="submit" />
+ *			重置按钮<inout type="reset" />
+ *			普通按钮<input type="button" />
+ *			属性：name控件名		value按钮标签文字
+ *	  CSS样式
+ *		控制文字和段落的格式
+ *			font-size文字大小	单位px,pt点	color文字颜色		
+ *			font-style倾斜体：normal正常	italic斜体	
+ *			font-weight粗体：normal正常 	bold粗体		
+ *			text-decoration文字修饰：none无修饰	underline下划线	overline上划线	line-through删除线
+ *			line-height行高度：单位px像素	%百分比
+ *		控制背景的格式
+ *			backgound-color背景颜色
+ *			backgound
+ *		控制背景的格式
+ *			backgound-color背景颜色
+ *			backgound-image背景图片路径url
+ *			backgound-repeat背景图片的平铺	repeat平铺	repeat-x水平平铺	repeat-y垂直平铺	no-repeat只显示一个图片
+ *			backgound-attachment背景图片是否固定	  fixed固定	scroll随内容滚动
+ *		控制对齐格式
+ *			text-align水平对齐方式	left左对齐	center居中对齐		right右对齐
+ *			vertical-align垂直对齐方式	top上对齐	middle居中对齐		bottom下对齐
+ *		控制空白间距的格式
+ *			margin-top上空白大小	单位px像素
+ *			margin-bottom下空白大小  	单位px像素
+ *			margin-left左空白大小		单位px像素
+ *			margin-right右空白大小		单位px像素
+ *			margin：上下左右空白		单位px像素
+ *		控制边框线的格式
+ *			border-top-width上边框粗细
+ *			border-bottom-width下边框粗细
+ *			border-left-width左边框粗细
+ *			border-right-width右边框粗细
+ *			border-width上下左右粗细
+ *			border-top-color上边框颜色
+ *			border-bottom-color下边框颜色
+ *			border-left-color左边框颜色
+ *			border-right-color右边框颜色
+ *			border-color上下左右颜色
+ *			border-top-style上边框样式	
+ *			border-bottom-style下边框样式	
+ *			border-left-style左边框样式	
+ *			border-right-style右边框样式	
+ *			border-style上下左右样式	
+ *			属性：none无边框	solid实线	  dotted点	dashed虚线       double双线	ridge凹线		outse立体效果	
+ *		控制宽度高度的格式
+ *			width宽度
+ *			height高度
+ *		超链接模式名称
+ *			a:link初始状态				a:visisted已访问过的链接
+ *			a:active按下鼠标时的状态		a:hover鼠标移上链接的状态	
+ *		控制方位
+ *			position: absolute;
+ *			left:左距离;
+ *
+ *
+ *
+ *·····MYSQL
+ *------数学函数
+ *		-- 取绝对值
+ *		SELECT abs(-10);
+ *		SELECT abs(10);-- 10
+ *		-- 返回二进制
+ *		SELECT bin(10);-- 1010
+ *		-- 向上取值
+ *		SELECT ceiling(10.2);-- 11
+ *		-- 向下取值
+ *		SELECT floor(10.9);-- 10
+ *		-- 取模
+ *		SELECT mod(10,3);-- 1
+ *		SELECT mod(22,5);-- 2
+ *		-- 四舍五入
+ *		SELECT round(5.4);-- 5
+ *		SELECT round(6.5);-- 7
+ *		-- 返回随机数
+ *		SELECT rand();
+---------字符串函数
+ *		-- 返回字符串bit的长度
+ *		SELECT bit_length('ab');-- 16
+ *		SELECT bit_length('三');-- 24
+ *		-- 用连接符号连接字符串
+ *		SELECT concat_ws('-','xiao','lang');-- xiao-lang
+ *		SELECT concat_ws('=','xiao','lang');-- xiao=lang
+ *		-- 替换字符串
+ *		SELECT insert('sdsadads',3,4,'2134');-- sd2134ds
+ *		SELECT insert('xczxcxsdsa',4,5,'21422');-- xcz21422sa
+ *		-- 查找此字符或者字符串在字符集合中的(第一次出现的)位置
+ *		SELECT find_in_set('a','s,d,gf,a,s,s,x,a');-- 4
+ *		SELECT find_in_set('sd','ds,a,sz,xz,zx,s,as,sd,fd');-- 8
+ *		-- 从左边展示4个字符
+ *		SELECT left('sdass',4);-- sdas
+ *		-- 从右边展示5个字符
+ *		SELECT right('xcsads',5);-- csads
+ *		-- 字符串比较（一样的返回0 右边大的返回-1，左边大的返回1 按照相应位置的ASCII码的大小比较）
+ *		SELECT strcmp('a','a');-- 0
+ *		SELECT strcmp('ab','ac');-- -1
+ *		SELECT strcmp('ac','ab');-- 1
+ *		SELECT strcmp('1','2');-- -1
+--------日期函数，时间函数
+ *		-- 返回当前系统时间（年月日 时分秒）
+ *		SELECT now();
+ *		-- 返回系统当前时间（年月日）
+ *		SELECT curdate();
+ *		-- 返回系统当前时间（时分秒）
+ *		SELECT curtime();
+ *		SELECT curtime_time();
+ *		-- 增加给定的年月日interval
+ *		SELECT DATE_ADD(CURDATE(),INTERVAL 6 YEAR);
+ *		SELECT DATE_ADD(CURDATE(),INTERVAL 7 MONTH);
+ *		SELECT DATE_ADD(CURDATE(),INTERVAL 4 DAY);
+ *		-- 减去给定的年月日
+ *		SELECT DATE_SUB(CURDATE(),INTERVAL 4 YEAR);
+ *		SELECT DATE_SUB(CURDATE(),INTERVAL 5 MONTH);
+ *		SELECT DATE_SUB(CURDATE(),INTERVAL 6 DAY);
+ *		-- 返回一周的第几天
+ *		SELECT DAYOFWEEK(CURDATE());
+ *		-- 返回一个月的第几天
+ *		SELECT DAYOFMONTH(CURDATE());
+ *		-- 返回一年的第几天
+ *		SELECT DAYOFYEAR(CURDATE());
+ *		-- 返回星期几
+ *		SELECT DAYNAME(CURDATE());
+ *
+--------添加主键
+ *      alter table 表名
+ *      add primary key(需要设置为主键的字段名);
+ *      -- 删除主键
+ *      alter table 表名  drop primary key;
+ *      -- 添加唯一键
+ *      alter table 表名
+ *      add unique key UK_na(na);   UK_na唯一键名称       na设置为唯一键的字段
+ *      -- 删除唯一键
+ *      alter table 表名 drop index UK_na;    index索引
+ *      -- 添加外键
+ *      alter table 表名 
+ *      add constraint 外键名称  foreign key(外键字段)        constraint约束
+ *      references 主键表名(id);//只能引别的表的主键			 references参考
+ *      -- 删除外键
+ *      alter table 表名
+ *      drop foreign key 外键名称;
+ *      alter table 表名
+ *      drop index 外键索引跟外键名称一样;
+ *		删除主键     如果创建表的时候创建了自增则删除主键分两步
+ *		alter table 表名  modify 主键字段名 int not null;
+ *		alter table 表名  drop primary key;
+ *
+ *······jsp页面的重点元素
+ *			静态内容-----html静态文本
+ *			指令----------以<%@开始        以%>结束
+ *			表达式-------<% =java表达式 %>
+ *			小脚本-------<% java 代码 %>
+ *			声明----------<% !方法%>
+ *			注释----------<!--这是注释，但客户端可以查看到-->
+ *						<%--这也是注释，但客户端不能查看到 --%>		
+ *`````	jsp九大内置对象
+ *			page	pageContext		request		response	session		
+ *			application		out		config		exception	
+ *····jsp的request内置对象
+ *			乱码解决的方法
+ *			String 新的对象名= new String(对象名.getBytes("ISO-8859-1"),"utf-8");
+ *		request：主要用于处理客户端请求
+ *			方法：
+ *			 String返回值类型     getParameter("")
+ *		            	根据页面表单组件名称获取页面提交数据
+ *			 String[]返回型类型	getParameterValues("")
+ *			 	 获取一个页面表单组件对应多个值时的用户的请求数据
+ *			 void 没有返回值       setCharacterEncoding("utf-8")
+ *			  	指定每个请求的编码，在调用getParameter()之前进行
+ *			  	设定，可以解决中文乱码的问题
+ *			 转发
+ *				request.getRequestDispatcher("地址").forward(request, response);
+ *			 重定向
+ *				response.sendRedirect("地址");
+ *			通过request得到session
+ *				HttpSession session=request.getSession();
+ *			session存储内容
+ *				session.setAttribute("存储内容的名称可自定义",存储的内容名称);
+ *			servlet得到session的值
+ *			.	（HttpSession类型）request.getSession().getAttribute("存储内容的名称");
+ *			jsp得到session的值			
+ *				${储存内容的名称.内容里面的属性名}
+ *			移除所有session
+ *				request.getSession().invalidate();
+ *			jsp的循环<c:forEach items="${存储内容的名称}" var="新的名称">
+ *			jsp指令<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ *				${新的名称.内容的属性名}		</c:forEach>	
+ *'''''''''jsp跟servlet的区别，共同点，联系
+ *			JSP在本质上就是Servlet,但是两者的创建方式不一样。
+ *				Servlet都是由JAVA程序代码构成，用于流程控制和事务处理，
+ *				通过Servlet来生成动态网页很不直观。
+ *				而JSP由HTML代码和JSP标签构成，可以方便地编写动态网页.
+ *			JSP与Servlet主要有两方面的不同：
+ *				编译：JSP修改后可以立即看到结果，不需要编译；
+ *				而Servelt缺需要编译。转换：JSP是动态网页开发技术，是运行在服务器端的脚本语言，
+ *				而Servlet是web服务器端编程技术。所以JSP运行时就是转换为Servlet，也就是java程序来执行。
+ *
+*''''''''''Servlet生命周期分为三个阶段：
+*
+*         1，初始化阶段  调用init()方法
+*
+*         　               2，响应客户请求阶段　　调用service()方法
+*
+*　　                  3，终止阶段　　调用destroy()方法
+*`````````MVC
+*			Model(模型)  应用程序中用于处理应用程序数据逻辑的部分
+*			View(视图)	应用程序中处理数据显示的部分
+*			Controller(控制器)	应用程序中处理用户交互的部分
+*
+* *······IO流		有序的，有方向的数据集合
+*
+*		流向不同：输入流(inputStream)，输出流(outputStream)
+*		处理数据不同：字节流，字符流
+*			字节流(inputStream),(outputStream)
+*			字符流(inputStreamReader),(outputStreamWriter)
+*		基本功能：节点流，过滤流
+*		
+*	          标准输入流Ststem.in
+*	          标准输出流Ststem.out
+*······File
+*			获得文件路径		File file=new File("文件路径");
+*			创建字节输入流		FileIuputStream  fis=new  FileIuputStream(file);
+*			
+*
+*''''''Coolie是web服务器保存在客户端的一系列文本信息
+ *			作用：对特定对象的追踪    统计网页浏览次数    简化登录	
+ *			安全性能 ：容易信息泄漏
+ *			常用方法：类型                    方法名称					               说明	    
+ *				  void      setMaxAge(int expiry)     设置Cookie的有效期以秒计算
+ *				  void		setValue(String value)    在Cookie创建后，对cookie经行赋值
+ *				String		getName()				     获取cookie的名称
+ *				String   	getValue()				     获取Cookie的值  		
+ *				String 		getMaxAge()				     获取cookie的有效时间以秒为单位
+**······函数 	function
+ *·····window对象方法
+ *		关闭浏览器窗口
+ *			open			打开一个新的浏览器窗口，加载给定URL所指定的文档
+ *			setTiprompt			显示可提示用户输入的对话框
+ *			alert			显示带有一个提示信息和一个确认按钮的警示框
+ *			confirm			显示一个带有提示信息，确定和取消的对话框
+ *			close	meout		在指定的毫秒数后调用函数或计算表达式
+ *			setIntegerval	按照指定的周期（以毫秒计）来调用函数或表达式
+ *		window对象属性
+ *			screen   		有关客户端的屏幕和显示性能的信息
+ *			history			有关客户访问过的URL的信息
+ *			location		有关当前URL的信息
+ *		常用事件
+ *			onload    		一个页面或一副图像完成加载
+ *			onmouseover		鼠标移到某个元素之上
+ *			onclick 		当用户单击某个对象时调用的事件句柄
+ *			onkeydown		某个键盘按键被按下
+ *			onchange		域的内容被改变
+ *          onsubmit        提交事件
+ *
+ *·····document对象的常用方法
+ *			getElementById() 		返回对拥有指定id的第一个对象的引用
+ *			getElementByName		返回带有指定名称的对象的集合(长度用length数组)
+ *			getElementByTagName()	返回带有指定标签名的对象的集合(长度用length数组)
+ *			write()					向文档写文本，HTML表单式或javaScript代码			
+ *			referrer				返回载入当前文档的文档的URL
+ *			URL		
+ *				返回当前文档的URL
+ *''''''''		.style.visibility="hidden";    隐藏但是有位置	""显示
+ *''''''''		.style.display="none";			隐藏没有位置	block显示
+ *·····Ajax
+ *		Ajax异步  JavaScript and XML
+ *    		经典的网站交互模式请求是由浏览器发送的，结果内容也返回到浏览器
+ *			它由一个javaScript对象 发送请求，结果内容也返回给这个javaScript对象
+ *	Ajax常用的属性:
+ *    		onreadystatechange 事件监听 回调函数
+ *			status: 服务器的状态 200服务器正常
+ *			readyState:就绪状态 也是请求状态 4 已经返回完成
+ *			responseText：接收返回内容的 接受返回 文本类型内容的   
+ *			responseXML:接收返回内容的   接受返回 xml类型内容的  
+ *	ajax 使用步骤：
+ *		1）创建XMLHttpRequest对象
+ *	   	var	req = new XMLHttpRequest（）;
+ *		2) 设置这个对象回调（事件处理）
+ *	   		req.onreadystatechange=function 回调函数(){
+ *		   		if(req.status==200 服务器正常 && req.readyState==4 完全返回){
+ *		      	req.responseText //返回的内容字符串
+ *		   	} 
+ *		3）打开连接
+ *	   		req.open("post 请求的方式","url地址",true 是否异步)
+ *		4）如果是post请求 设置头信息 
+ *	      req.setRequestHeader("Content-type",
+ *			"application/x-www-form-urlencoded");
+ *		5）发送请求
+ *       	req.send(请求的参数，"name1=value1&name2=value2")	
+ * 		
+ *		总结：	
+ *    		ajax发请求是 一个js对象 XMLHttpRequest对象发送请求，结果返回到这个对象的
+ *   		reponseText或者　responseXML属性中。
+ *			ajax请求是异步的，发送请求之后不阻塞后面的js代码，返回结果靠一个事件处理
+ *			也叫回调  onreadystatechange 
+ *
+ *
+ *    创建和增加节点document.
+ *			createElement()   创建节点
+ *			appendChild()	     末尾追加方式插入节点
+ *			lisertBefore()	     在指定节点前插入新节点
+ *			cloneNode()		     克隆节点	  克隆的深度true    false
+ *			removeChild()	     删除节点
+ *			replaceChild()	     替换节点
+ *······table表格对象
+ *			属性rows       		返回包含表格中所有行的一个数组
+ *			方法insertRow()		在表格中插入一个新行
+ *			方法deleteRow()		在表格中删除一行
+ *		  tableRow表格对象
+ *			属性cells				返回包含行中所有单元格的一个数组
+ *			属性rowIndex			返回该行在表中的位置
+ *			方法insertCell()		在一行中的指定位置插入一个空的<td>标签
+ *			方法deleteCell()		删除行中指定的单元格
+ *		  tableCell单元格行对象
+ *			属性cellIndex			返回单元格在某行单元格集合中的位置	
+ *			属性innerHTML			设置或返回单元格的开始标签和结束标签之间的HTML
+ *			属性align				设置或返回单元格内部数据的水平排列方式
+ *			属性className			设置或者返回元素的class属性	
+ *jsp字符串的方法
+ *			.toLowerCase()		把字符串转化为小写
+ *			.toUpperCase()		把字符串转换成大写	
+ *			.charAt(索引)			返回在指定位置的字符
+ *			.indexOf(字符串,索引)	查找某个指定的字符串值在字符串中首次出现的位置
+ *			.substring(索引1,索引2)
+ *·······正则表达式
+ *			[\u4e00-\u9fa5]		判定汉字    
+ *
+ *·······正则表达式
+// *			\
+//			将下一个字符标记符、或一个向后引用、或一个八进制转义符。例如，“\\n”匹配\n。“\n”匹配换行符。序列“\\”匹配“\”而“\(”则匹配“(”。即相当于多种编程语言中都有的“转义字符”的概念。
+//			^
+//			匹配输入字行首。如果设置了RegExp对象的Multiline属性，^也匹配“\n”或“\r”之后的位置。
+//			$
+//			匹配输入行尾。如果设置了RegExp对象的Multiline属性，$也匹配“\n”或“\r”之前的位置。
+// 			*
+//			匹配前面的子表达式任意次。例如，zo*能匹配“z”，也能匹配“zo”以及“zoo”。*等价于o{0,}
+//			+
+//			匹配前面的子表达式一次或多次(大于等于1次）。例如，“zo+”能匹配“zo”以及“zoo”，但不能匹配“z”。+等价于{1,}。
+//			?
+//			匹配前面的子表达式零次或一次。例如，“do(es)?”可以匹配“do”或“does”中的“do”。?等价于{0,1}。
+//			{n}
+//			n是一个非负整数。匹配确定的n次。例如，“o{2}”不能匹配“Bob”中的“o”，但是能匹配“food”中的两个o。
+//			{n,}
+//			n是一个非负整数。至少匹配n次。例如，“o{2,}”不能匹配“Bob”中的“o”，但能匹配“foooood”中的所有o。“o{1,}”等价于“o+”。“o{0,}”则等价于“o*”。
+//			{n,m}
+//			m和n均为非负整数，其中n<=m。最少匹配n次且最多匹配m次。例如，“o{1,3}”将匹配“fooooood”中的前三个o为一组，后三个o为一组。“o{0,1}”等价于“o?”。请注意在逗号和两个数之间不能有空格。
+//			?
+//			当该字符紧跟在任何一个其他限制符（*,+,?，{n}，{n,}，{n,m}）后面时，匹配模式是非贪婪的。非贪婪模式尽可能少的匹配所搜索的字符串，而默认的贪婪模式则尽可能多的匹配所搜索的字符串。例如，对于字符串“oooo”，“o+”将尽可能多的匹配“o”，得到结果[“oooo”]，而“o+?”将尽可能少的匹配“o”，得到结果 ['o', 'o', 'o', 'o']
+//			.点
+//			匹配除“\r\n”之外的任何单个字符。要匹配包括“\r\n”在内的任何字符，请使用像“[\s\S]”的模式。
+//			(pattern)
+//			匹配pattern并获取这一匹配。所获取的匹配可以从产生的Matches集合得到，在VBScript中使用SubMatches集合，在JScript中则使用$0…$9属性。要匹配圆括号字符，请使用“\(”或“\)”。
+//			(?:pattern)
+//			非获取匹配，匹配pattern但不获取匹配结果，不进行存储供以后使用。这在使用或字符“(|)”来组合一个模式的各个部分时很有用。例如“industr(?:y|ies)”就是一个比“industry|industries”更简略的表达式。
+//			(?=pattern)
+//			非获取匹配，正向肯定预查，在任何匹配pattern的字符串开始处匹配查找字符串，该匹配不需要获取供以后使用。例如，“Windows(?=95|98|NT|2000)”能匹配“Windows2000”中的“Windows”，但不能匹配“Windows3.1”中的“Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。
+//			(?!pattern)
+//			非获取匹配，正向否定预查，在任何不匹配pattern的字符串开始处匹配查找字符串，该匹配不需要获取供以后使用。例如“Windows(?!95|98|NT|2000)”能匹配“Windows3.1”中的“Windows”，但不能匹配“Windows2000”中的“Windows”。
+//			(?<=pattern)
+//			非获取匹配，反向肯定预查，与正向肯定预查类似，只是方向相反。例如，“(?<=95|98|NT|2000)Windows”能匹配“2000Windows”中的“Windows”，但不能匹配“3.1Windows”中的“Windows”。
+//			(?<!pattern)
+//			非获取匹配，反向否定预查，与正向否定预查类似，只是方向相反。例如“(?<!95|98|NT|2000)Windows”能匹配“3.1Windows”中的“Windows”，但不能匹配“2000Windows”中的“Windows”。这个地方不正确，有问题
+//			此处用或任意一项都不能超过2位，如“(?<!95|98|NT|20)Windows正确，“(?<!95|980|NT|20)Windows 报错，若是单独使用则无限制，如(?<!2000)Windows 正确匹配
+//			x|y
+//			匹配x或y。例如，“z|food”能匹配“z”或“food”(此处请谨慎)。“[zf]ood”则匹配“zood”或“food”。
+//			[xyz]
+//			字符集合。匹配所包含的任意一个字符。例如，“[abc]”可以匹配“plain”中的“a”。
+//			[^xyz]
+//			负值字符集合。匹配未包含的任意字符。例如，“[^abc]”可以匹配“plain”中的“plin”。
+//			[a-z]
+//			字符范围。匹配指定范围内的任意字符。例如，“[a-z]”可以匹配“a”到“z”范围内的任意小写字母字符。
+//			注意:只有连字符在字符组内部时,并且出现在两个字符之间时,才能表示字符的范围; 如果出字符组的开头,则只能表示连字符本身.
+//			[^a-z]
+//			负值字符范围。匹配任何不在指定范围内的任意字符。例如，“[^a-z]”可以匹配任何不在“a”到“z”范围内的任意字符。
+//			\b
+//			匹配一个单词边界，也就是指单词和空格间的位置（即正则表达式的“匹配”有两种概念，一种是匹配字符，一种是匹配位置，这里的\b就是匹配位置的）。例如，“er\b”可以匹配“never”中的“er”，但不能匹配“verb”中的“er”。
+//			\B
+//			匹配非单词边界。“er\B”能匹配“verb”中的“er”，但不能匹配“never”中的“er”。
+//			\cx
+//			匹配由x指明的控制字符。例如，\cM匹配一个Control-M或回车符。x的值必须为A-Z或a-z之一。否则，将c视为一个原义的“c”字符。
+//			\d
+//			匹配一个数字字符。等价于[0-9]。grep 要加上-P，perl正则支持
+//			\D
+//			匹配一个非数字字符。等价于[^0-9]。grep要加上-P，perl正则支持
+//			\f
+//			匹配一个换页符。等价于\x0c和\cL。
+//			\n
+//			匹配一个换行符。等价于\x0a和\cJ。
+//			\r
+//			匹配一个回车符。等价于\x0d和\cM。
+//			\s
+//			匹配任何不可见字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。
+//			\S
+//			匹配任何可见字符。等价于[^ \f\n\r\t\v]。
+//			\t
+//			匹配一个制表符。等价于\x09和\cI。
+//			\v
+//			匹配一个垂直制表符。等价于\x0b和\cK。
+//			\w
+//			匹配包括下划线的任何单词字符。类似但不等价于“[A-Za-z0-9_]”，这里的"单词"字符使用Unicode字符集。
+//			\W
+//			匹配任何非单词字符。等价于“[^A-Za-z0-9_]”。
+//			\xn
+//			匹配n，其中n为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，“\x41”匹配“A”。“\x041”则等价于“\x04&1”。正则表达式中可以使用ASCII编码。
+//			\num
+//			匹配num，其中num是一个正整数。对所获取的匹配的引用。例如，“(.)\1”匹配两个连续的相同字符。
+//			\n
+//			标识一个八进制转义值或一个向后引用。如果\n之前至少n个获取的子表达式，则n为向后引用。否则，如果n为八进制数字（0-7），则n为一个八进制转义值。
+//			\nm
+//			标识一个八进制转义值或一个向后引用。如果\nm之前至少有nm个获得子表达式，则nm为向后引用。如果\nm之前至少有n个获取，则n为一个后跟文字m的向后引用。如果前面的条件都不满足，若n和m均为八进制数字（0-7），则\nm将匹配八进制转义值nm。
+//			\nml
+//			如果n为八进制数字（0-7），且m和l均为八进制数字（0-7），则匹配八进制转义值nml。
+//			\ un
+//			  匹配n，其中n是一个用四个十六进制数字表示的Unicode字符。例如，\u00A9匹配版权符号（&copy;）。
+//			\p{P}
+//			小写 p 是 property 的意思，表示 Unicode 属性，用于 Unicode 正表达式的前缀。中括号内的“P”表示Unicode 字符集七个字符属性之一：标点字符。
+//			其他六个属性：
+//			L：字母；
+//			M：标记符号（一般不会单独出现）；
+//			Z：分隔符（比如空格、换行等）；
+//			S：符号（比如数学符号、货币符号等）；
+//			N：数字（比如阿拉伯数字、罗马数字等）；
+//			C：其他字符。
+// 			*注：此语法部分语言不支持，例：javascript。
+//			\<
+//			\>
+//			匹配词（word）的开始（\<）和结束（\>）。例如正则表达式\<the\>能够匹配字符串"for the wise"中的"the"，但是不能匹配字符串"otherwise"中的"the"。注意：这个元字符不是所有的软件都支持的。
+//			( )	将( 和 ) 之间的表达式定义为“组”（group），并且将匹配这个表达式的字符保存到一个临时区域（一个正则表达式中最多可以保存9个），它们可以用 \1 到\9 的符号来引用。
+//			|	将两个匹配条件进行逻辑“或”（Or）运算。例如正则表达式(him|her) 匹配"it belongs to him"和"it belongs to her"，但是不能匹配"it belongs to them."。注意：这个元字符不是所有的软件都支持的。
+// *			[\u4e00-\u9fa5]		判定汉字    
+// *······jQuery-Ajax  
+// *			post异步变同步          $.ajaxSetup({async:false});
+// *				$.post("路径",{值名称:值,值名称:值},function(a（返回的值）){
+// *					});		
+// *······jQuery选择器
+// *		$("#a1").css("background-color","red");
+// *		$(".a2").css("background-color","orange");
+// *		$("a").css("font-size","20px");
+// *		$("ul li:first").css("font-size","10px");//ul列表下的li标签的第一个
+// *		$("[href='##7']").css("font-style","italic");//超链接是##7的
+// *		$("[href$='.com']").css("font-weight","bold");//朝鲜接以.com结尾的
+// *		$("[href]").css("text-decoration","none");//所有为href的
+// *		$("a.a16").css("background-color","black");//a 标签下class编码为a16的
+// *		$("a#a19").css("background-color","green");//a 标签下id编码为a16的
+// *		$("a#a14").css("color","orange");
+// *		$("ul li a.a11").css("color","violet");//ul列表下的li标签下的a标签下的class为a11的	
+// *		$("ul li a [href='##13']").css("color","violet");//ul列表下的li标签下的a标签下的字段为href的
+// *······jQuery属性
+// *		//1.jQuery隐藏DOM
+// *			$("#b1").click(function(){
+// *				$("#p1").show();
+// *			});
+// *		//.jQuery显示DOM
+// *			$("#b2").click(function(){
+// *				$("#p1").hide();
+// *			});
+// *  	//jQuery隐藏和显示DOM
+// *			$("#b3").click(function(){
+// *				$("#p1").fadeToggle();
+// *			});
+// *		//淡入
+// *			$("#b4").click(function(){
+// *				$("#a4").fadeIn();
+// *	 		});
+// *		//淡出
+// *			$("#b5").click(function(){
+// *				$("#a4").fadeOut();
+// *			});
+// *		//淡入淡出切换
+// *			$("#b6").click(function(){
+// *				//$("#a1").fadeToggle();
+// *			$("#a4").fadeToggle("slow");慢点
+// *				//$("#a1").fadeToggle("fast");快速的
+// *				//$("#a1").fadeToggle(3000);多少毫秒显示
+// *		});
+// *		//透明度
+// *		$("#b7").click(function(){
+// *			  $("#a1").fadeTo("slow",0.1);0.1-1透明的度数
+// *		});
+// *		//滑动展示
+// *		$("#w1").click(function(){
+// *			//$("#a4").slideDown("slow");
+// *			$("#a4").slideDown(3000);
+// *		});
+// *		//滑动隐藏
+// *		$("#w2").click(function(){
+// *			$("#a4").slideUp(3000);
+// *		});
+// *		//动画效果2
+// *		$("#w5").click(function(){
+// *			$("#a4").animate({left:"1000px",opacity:0.5,height:"250px",width:"250px"},3000);
+// *		});
+// *		//动画效果3
+// *		$("#w6").click(function(){
+// *			$("#a2").animate({left:"1000px",opacity:0.5,height:"+=250px",width:"+=250"},3000);
+// *		});
+// *		//jQuery callBack回调方法
+// *		$("#w7").click(function(){
+// *			$("#a2").slideDown(2000,function(){
+// *				alert("回调方法");
+// *			});
+// *		});
+// *		//动画向左移动
+// *			$("#r1").click(function(){
+// *				$("#a1").animate({left:'1000px'},2000);
+// *			});
+// *		//停止
+// *			$("#r2").click(function(){
+// *				$("#a1").stop();
+// *			}); 
+// *······jQuery事件
+// *		$(document).ready(function(){
+// *			});页面加载事件
+// *		$("#s1").mouseover(function(){鼠标移到某个元素之上
+// *			$("#a1").val("");
+// *		})
+// *		 .mouseout鼠标移下事件
+// *		 .focus鼠标获得焦点
+// *		 .blur鼠标失去焦点
+// *		 .click鼠标点击焦点
+// *		 .dblclick鼠标双击焦点		  
+// *----------
+ *==========js的对象创建
+ *     new object       {}
+ *
+ *
+ *名称:值     ,   数组[]
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *oracle————————-----------------数据库
+ * 
+ * 
+ * 		第一步：创建表空间
+ *			create tablespace 表名称
+ *			datafile'E:\文件夹名称\下层文件夹名称\创建的数据源文件名称'
+ *			size 100m    (物理文件初始大小)
+ *		第二步：创建用户
+ *			create user 用户名  identified by 密码
+ *			default tablespace 表空间的名称   ——存放表及数据的表空间
+ *			temporary tablespace 临时表空间的名称;	——临时表空间
+ *		第三步：为用户授权
+ *				dba 数据库管理员角色，拥有管理数据库的最高权限
+ *			grant connect,resource,dba to 需要授权的用户的名称;
+ *				撤销权限或角色       revoke  权限/角色名称 from 用户名;
+ *		oracle服务器由数据库和实例两部分组成
+ *		什么是表空间有什么用?物理存储的逻辑名称
+ *		数据库实例由什么组成？应用进程
+ *		数据库实例由什么组成？
+ *		创建用户使用oracle数据库都需要做那些操作?第一步：创建表空间 第二步：创建用户 第三步：为用户授权
+ *		PLSQL Developer和Oracle数据库是什么关系？PLSQL Developer是客户端的操作软件
+ *
+ *		数据库有那些完整性：域完整性，引用完整性，实体完整性
+ *		主键：  oracle设置主键自动为主键创建唯一索引 实体完整性
+ *		外键：通过创建外键 保证引用完整性 外键是两个表的公共列，如果在其中一个表中是主键，在另外一个表中称为外键。
+ *		创建序列	create sequence 序列名
+ *				minvalue 最小值
+ *				maxvalue 最大值
+ *				start with 序列开始于
+ *				increment by 序列步长;      
+ *				Cycle      循环 
+ *				Cache 2;   循环
+ *			序列的使用：
+ *			取序列下一个值：序列名.nextval   取序列上次取得的值：序列名.currval
+ *			要注意：如果当前会话没有执行过 序列名.nextval,不能取得 序列名.currval的。		
+ *		 PowerDesigner   
+ *		PowerDesigner是一个强大的UML建模工具，一般做设计用，比如类图、用例图、E/R图等都能方便的创建。
+ *		在数据库建模(E/R图—实体联系图)方面非常强大，有三个方面的作用。
+ *		1.建立实体联系图模型，可以方便的看出表的结构。
+ *		2.模型所设计的表结构还能方便的生成sql语句
+ *		3.模型所涉及的表注释等能方便生成文字的文档(html/rtf)
+select  replace(t.student_id,'G',110),t.* from STUDENT t -- 把g替换成110
+select instr(t.pwd,8),t.pwd from student t -- 8的位置
+select substr(t.email,instr(t.email,'@')+1) from student t -- @后面的域名（不包括@）
+select power(3,4) from dual -- 3的4次幂
+select mod(34,12) from dual -- 34对12取余
+select round(122.666,2)from dual -- 对122.666四舍五入 保留2位
+select trunc(1234.34343430,2)  from dual -- 对1234.34343430 截断2位（保留2位）
+select add_months('09-4月-03',1)  from dual -- 在04年-4月-09日基础上加一个月
+select next_day('05-3月-18','星期一') from dual --返回下一个星期一的日期
+select round(to_date('09-6月-09'),'year') from dual --（对年四舍五入） 根据月份（大于6月）四舍五入 月和日全为一
+select round(to_date('12-7月-09'),'month') from dual -- (对月四舍五入) 根据月份（大于6月）四舍五入 日为一
+select round(to_date('06-3月-18'),'day') from dual-- (对日四舍五入)根据（超过星期三是这周的星期日）没有超过为上一周的星期日
+select trunc(to_date('09-5月-18'),'year') from student t --截断得到全部18年
+select trunc(to_date('09-9月-18'),'month') from student t --截断得到全部5月份
+select trunc(to_date('06-3月-18'),'day') from student t --截断得到这个星期的第一天（星期日）
+select to_char(2222,'$9999.99') from dual --必须全部是数字，数字不能大于字符串格式（数字转字符串）
+select to_date('1990-09-09','yyyy-mm-dd') from dual --字符串转时间
+select to_number('12345') from dual -- 字符串转数字
+select nvl(t.address,'没有地址'),t.address from student t -- 第一个没有值，返回第二个
+select nvl2(t.address,'有地址','2222'),t.address from student t -- 第一个没有值 返回第三个，有值返回第二个
+select decode(t.sex,'男',3,'女',2,'人妖',1), t.sex from student t --如果性别是男就返回3
+ *
+ *······oracle分页查询
+ *		伪列：rownum，类似于行号，查询结果得到之后 ，rownum才有值。
+ *		三层查询
+ *		Select * from   (Select rownum r,t.* from 
+ *		(Select * from 表 [where ] order by 子句)  t where rownum<=结束行) 
+ *		tab where r>起始行   
+ *		其中：最内层查询 排序
+ *		第二层查询 rownum起别名(最外层用别名大于起始行)，rownum和结束行比较  rownum<=结束行
+ *		第三层（最外层）使用第二层子查询rownum的别名和起始行比较  别名>起始行
+ *		从而获得一个可以查询从第几行 到第几行的sql
+ *		例如：
+ * 		select * from (select rownum rr,t.* from 
+ * 		(select * from STUDENT t where age>5 order by student_id desc) t
+ *  		where rownum<=6 ) tt where rr>3	
+ *······oracle导入与导出
+ *		导出：exp 用户名/密码@数据库网络别名（exp export）
+ *		导出：imp 用户名/密码@数据库网络 别名（imp import）
+ *·····oracle函数
+ *		数据库字符串函数 
+ *			initcap(char数据库字段)首字母大写            lower(char)转换为小写
+ *			upper(char)转换成大写				length(char)长度
+ *			ltrim(char,set)左裁剪				rtrim(char,set)右裁剪
+ *			replace(char，，set）字符串替换		instr(char,查找的东西,从第几个开始找可选)查找字符串位置	
+ *			substr(char,从第几个开始,截取几个字符串可选)
+ *			concat(char1,char2)连接字符串    oracle连接字符串||
+ *		数据库数学函数
+ *			abs(n)取绝对值		cell(n)向上取整	floor(n)向下取整		sin(n)正弦
+ *			cos(n)余弦		sign(n)取符号		fower(m,n)m的n次幂	mod(m,n)取余数
+ *			round(m,n)四舍五入n保留几位小数		trunc(m,n)截断n截断几位小数
+ *			sqrt(n)平方根		oracle数据库日期函数		sysdate获得系统当前的时间
+ *			sysdate+1等于加一天
+ *		数据库时间函数
+ *			Sysdate 放回当前日期和时间 select Sysdate from dual;
+ *			months_between（date1，date2）返回两个日期间的月份
+ *	 		add_months（date,n）返回把月份数加到日期上的新日期
+ *			next_day（date，'星期几'）返回指定日期后的星期对应的新日期
+ *			last_day（date）返回指定日期所在的月的最后一天select last_day(sysdate)from dual;
+ *			round（date，'year'）按指定格式对日期进行四舍五入
+ *			trunc（date，'year'）对日期按指定方式进行截断
+ *		数据转换函数
+ *			TO_CHAR	转换成字符串类型	to_char(1234.5, '9999.9')	'1234.5'
+ *			TO_DATE	转换成日期类型	to_date('1980-01-01', 'yyyy-mm-dd')	1980/01/01
+ *			TO_NUMBER转换成数值类型	to_number('1234.5')			1234.5
+ *			查看考试成绩一月分的数据：select to_char(exa_date,'yyyy-mm'),t.* from T_SCORE t 
+ *		其他函数
+ *			NVL(EXP1, EXP2)	如果exp1的值为null，则返回exp2的值，否则返回exp1的值	exp1如果为数字类型 返回的exp2也需要是数字类型
+ *							where to_char(exa_date,'yyyy-mm')='2010-01';
+ *			NVL2(EXP1, EXP2, EXP3)	如果exp1的值为null，则返回exp3的值，否则返回exp2的值
+ *			DECODE(VALUE,IF1,THEN1,IF2,THEN2,……,ELSE) 如果value的值为if1，则返回then1的值，
+ *			如果value的值为if2，则返回then2的值，……，否则返回else值
+ *          to_char(sysdate,'d')得到这周的第几天     to_char(sysdate,'dd')本月第几号
+ *			to_char(sysdate,'day')中文这周的星期几
+ *			to_char(sysdate,'mm')月份	   to_char(sysdate,'yyyy')年份
+                                        to_char(sysdate,'yy')年份  如（18年）
+ *
+ *·······过程和函数的区别
+ *				      标识符                返回值			    赋值			 调用方式			目的
+ *		      过程     procedure  必须使用变量形参	 不能赋值并定义类型               独立的过程调用句	 完成一系列的数据处理
+ *		      函数     function	      用函数名直接返回      可以定义类型，并直接赋值    以表达式方式调用     获得函数返回值
+ *·······过程和函数不同点：
+ *		1、标识符不同。函数的标识符为FUNCTION，过程为：PROCEDURE。
+ *		2、函数中有返回值，且必须返回，而过程没有返回值。
+ *		3、过程无返回值类型，不能将结果直接赋值给变量；函数有返回值类型，调用时，除在select中，必须将返回值赋给变量。
+ *		4、函数可以在select语句中直接使用，而过程不能，
+ *		      例如：假设已有函数fun_getAVG() 返回number类型绝对值。那么select fun_getAVG(col_a) from table 这样是可以的。
+ *
+ *
+ *·······oracle触发器		是在某些时间发生的时候执行的一段pl/sql
+ *		   	create or replace trigger 触发器名称
+ *           	before（在执行之前,after在什么执行之后,instead of替换） delete（执行什么样的sql语句）
+ *		  	    on 表名（对那个表加触发器）
+ *		  	    [for each row（每一行出发一次）]（没有只出发一次）
+ *          begin						   :new执行新增的哪一条数据（内置对象）
+ *          （执行备份代码）                                                 :old执行删除的哪一行数据（内置对象）
+ *				insert into 备份的表名(字段名1,字段名2)values(:old.字段名1,:old.字段名2);
+ *			end;
+ *·······oracle视图		视图是一个虚拟的表，本身不存储数据。
+ *			视图的特点	是一个数据库中虚拟的表，经过查询操作形成的结果，具有普通表的结构，不能实现数据的存储，对视图的数据修改将会影响实际的数据表
+ *			视图的优点   方便  安全   
+ *			create or replace view 视图名称   as select * from 表名
+ *			        （可多表联查，可加where条件）[with check option（对视图进行操作必须满足查询的条件）]
+ *			select * from 视图名称（查询视图）   可进行修改，对关联的表有影响   
+ *			单表可进行增删改查都行      多表联查不一定（多表修改一般都加触发器）   
+ *			drop视图表数据还存在
+ *·······oracle包	由包头和包体组成   组织和管理or的过程函数变量的组织结构
+ *			包头  声明变量  定义过程和函数
+ *			包体	要对包头中的过程和函数进行实现   可声明私有的函数和过程  外面不能调  自能自己用
+ *			注意：
+ *			1.包头中对于过程和函数只有声明没有实现。
+ *			2.包体中对包头中定义的过程函数必须给出实现。
+ *			3.包体中也可以编写自定义不在包头中的过程函数变量等，但是只能在包体中自己用，不能被外部调用相当于私有的。
+ *········oracle系统表	
+ *			 for  update;对表进行可视化操作    锁
+ *			 sys_refcursor系统游标
+ *
+ *
+ *
+ *·······oracle只需表名备份表数据
+ *			declare 
+ *   				f_table varchar2(100):='jname';--需要复制内容的表名
+ *   				f_sql varchar2(1000); 
+ *   				type youbiao is ref cursor;--创建一个游标类型
+ *   				you youbiao;--通过游标类型声明一个对象
+ *   				f_lie varchar2(1000);--声明一个存储列名的对象
+ *   				f_val varchar2(1000);--声明一个储存内容的对象
+ *   				f_name varchar2(30);--暂时存储表列名的对象
+ *			begin
+ *   				f_sql:='create table '||f_table||'back as select * from '||f_table||' where 1=0';--复制表结构
+ *   				execute immediate f_sql;--执行语句
+ *   				commit;--提交
+ *   				--通过系统表查到表字段
+ *    			f_sql := 'select column_name from user_tab_columns  where table_name=upper('''||f_table||''')';
+ *  				open you for f_sql;--打开游标并关联sql
+ *      			loop 
+ *        		fetch you into f_name;--抓取数据
+ *        		if you%found then 
+ *          		if f_val='' or f_lie is null then --f_val是''还没有被赋值
+ *            	f_lie:=f_name;
+ *            	f_val:='r.'||f_name;
+ *            	else --f_val已被赋值过  则拼接字符串
+ *               	f_lie:=f_lie||','||f_name;
+ *               f_val:=f_val||','||'r.'||f_name;
+ *            	end if;
+ *            	else 
+ *              	exit;
+ *          		end if;
+ *        		end loop;
+ *        		close you; --关闭游标
+ *       			f_sql:='begin for r in (select * from '||f_table||') loop 
+ *      			insert into '||f_table||'back ('||f_lie||')values('||f_val||');
+ *     			end loop; commit; end;';
+ *      			execute immediate f_sql;
+ *			end;
+ *			Struts2是mvc框架 以webwork为核心
+ *
+ *
+ *··········Struts2运行过程     
+ *				Struts2执行过程是所有请求先经过 核心控制器(过滤器)，
+ *				由核心控制器负责派发给真正能够处理请求的对象去处理。
+ *				如果请求的是Action（Struts2中真正处理请求的一个类）
+ *				它会在struts.xml配置文件中找到这个action并调用，处理结束 返回视图。
+ *			怎么用Struts2
+ *				1.导jar     2.web.xml配置struts2的核心控制器（前端控制器）
+ *				3.开发页面 开发action    5.配置struts.xml,默认是在类路径下 名字叫struts.xml
+ *				6.运行程序。Struts2的action接受请求参数，同名属性自动绑定，
+ *				    甚至实体类对象也能绑定，只要在页面中命名方式 对象名.属性名
+ *			Struts2怎么接收参数	
+ *				变量名与页面的name属性一致	
+ *		 接耦合的方式  只能存值取值
+ *			Struts2   获得session的替代对象     页面可直接${ }表达式用
+ *				ActionContext ac = ActionContext.getContext();
+ *				Map<String, Object> session（可自定义变量名）=ac.getSession();
+ *			Struts2   获得application 
+ *				  Map<String,Object> application =  ac.getApplication();  
+ *			Struts2   获得requst
+ *				  Map<String,Object> request = ac.get("request");
+ *		耦合的方式
+ *			获得request    所有方法都能用
+ *			 HttpServletRequest request = ServletActionContext.getRequest();
+ *			获得session对象
+ *			 HttpSession session = request.getSession();
+ *			获得application对象
+ *			 ServletContext application = ServletActionContext.getServletContext();
+ *			获得response对象
+ *			 HttpServletResponse response = ServletActionContext.getResponse();
+ *
+ *
+ *·······struts.xml配置
+ *			<result name="可以省略 默认值  success"  type="可以省略 默认dispatcher">资源</result>
+ *			type属性
+ *			 	dispatcher  转发到页面
+ * 				redirect 重定向到页面（通常）
+ * 			 	redirectAction 重定向到action
+ * 				chain  链式调用action 类似于 转发action
+ * 			在package节点下 用<global-results>节点配置全局结果。
+ *			相当于为package下每个action都在配置了<global-results>下的reslut节点
+ * 				<global-results>
+ *				<result name="error">error.jsp</result>
+ *				<result name="login" type="redirect">login.jsp</result>
+ * 				</global-results> 
+ * 			package下节点的上下顺序，不按这个顺序，dtd校验出错
+ * 				result-types?,
+ * 				interceptors?,
+ * 				default-interceptor-ref?,
+ * 				default-action-ref?,
+ * 				default-class-ref?,
+ * 				global-results?,
+ * 				global-exception-mappings?,
+ * 				action*
+ * 
+ * 
+ *······Struts2文件上传
+ *		页面的form必须 以"post"方式提交请求
+ *			<form action="upload.action" method="post" enctype="multipart/form-data">
+ *			</form> 
+ *	 	java.io.File 文件类，它是用来表示磁盘上的文件和文件夹（目录）路径的一个类。
+ *			可以通过它的实例提供的方法来操作或访问磁盘上的文件。
+ *		file.renameTo(File targetFile);//重命名file对象所代表的路径的文件成targetFile代表的路径 (移动)
+ *			文件名称.renameTo(new File("E:/"+文件名称FileName));	文件类型ContentType
+ *			file.delete()//删除file对象所代表的路径的文件
+ *			file.mkDir()//创建file对象所代表的路径的目录 只能创建一级目录
+ *			file.mkDirs()//创建file对象所代表的路径的目录 创建出整个的目录结构
+ *			file.listFiles();//得到file对象所代表的路径的子目录和子文件
+ *			file.getAbsolutePath //得到完整路径的字符串
+ *			file.getName()//得到文件或文件夹的名称 
+ *			file.isFile()
+ *			流对象,InputStream   OutputStream类的子类
+ *			java.io.FileInputStream 文件输入流类 读取文件内容到内存
+ *			java.io.FileOutputStream 文件的输出流类  输出内容到文件
+ *
+ *  	1.对于上传的文件大小进行控制 配置XML文件
+ *		（1）用stuts2 做文件上传载的配置XML
+ *		<!--最大50M，在struts.xml当中，配置静态常量的允许上传文件大小的属性-->
+ *		<constant name="struts.multipart.maxSize" value="52428800"/>
+ *		<action name="upload" class="upload.action.MyUpload" method="doUpload">
+ *		<result name="ok">upload_success.jsp</result>
+ *		<!--配置上传文件的action的允许的文件大小，必须单独配置上传文件拦截器的参数-->	
+ *		<interceptor-ref name="fileUpload">
+ *	 		<param name="maximumSize">52428800</param> 
+ *       <param name="allowedTypes"> image/png,image/gif,image/bmp</param>
+ *		</interceptor-ref>
+ *		<interceptor-ref name="defaultStack"></interceptor-ref>
+ *		</action>
+ *		(2)用stuts2 做文件上传载的java代码
+ *		//定义三个变量的属性
+ *		private File file;
+ *		private String fileFileName;
+ *		private String fileContentType;
+ *		//复制到另一个文件路径，如c：/file 文件夹下
+ *		file.renameTo(new File("c:/file/"+fileFileName)) 
+ *
+ *
+ *·····文件下载	实例
+ *			//得到response
+ *			HttpServletResponse response = ServletActionContext.getResponse();
+ *			//定义这是要下载
+ *			response.setContentType("application/x-msdownload");
+ *			//定义下载后的文件名
+ *			response.setHeader("Content-Disposition", "attachment;filename=aaa.sss");
+ *			//根据文件名打开该文件的输入流，读入内存中的变量 然后从这个变量 输入到浏览器的输出流
+ *			//定义一个byte数组（缓冲区）
+ *			byte[] buffer=new byte[1024];
+ *			
+ *
+ *
+*·······stuts2 文件下载	实例			
+ *			private String fileName;//接收文件名
+ *			private String outFileName;//下载后储存的文件名，将来在struts.xml中使用
+ *			//提供下载的文件的输入流,将来struts.xml中需要使用，提供Struts框架，让Struts读取输出给客户端
+ *			private  InputStream downloadFileStream;//提供下载的文件的输入流
+ *		 提供get,set方法
+ *			outFileName="myfile"+System.currentTimeMillis();	
+ *			downloadFileStream=new FileInputStream(
+ *			ServletActionContext.getServletContext()
+ *			.getRealPath("WEB-INF/down")+"/"+fileName);
+ *			return "";
+ *	2.（1）用stuts2 做文件下载的配置XML
+ *	<action name="sturtsDownload" class="action.StrutsDownloadAction">
+ *	<result name="success" type="stream">
+ *		<!--设置下载类型 -->
+ *		<param name="contentType"></param>
+ *		<!--设置文件下载的名字 -->
+ *		<param name="contentDisposition">attachment;filename="${fileName}"</param>
+ *		<!--设置输入流的名字 -->
+ *		<param name="inputName">strutsInput</param>
+ *		</result>
+ *		</action> 
+ *		（2）用stuts2 做文件下载的java代码
+ *		//定义文件属性
+ *		private String fileName;
+ *		//定义输入流属性
+ *		private InputStream strutsInput;
+ *		//输入流调取源文件
+ *		File file = new File(url + "/" + fileName);
+ *		strutsInput = new FileInputStream(file);
+ *
+ *
+ *·········ognl标签	 #attr   查找顺序先page  request   session   application
+ *			倒标签 <%@taglib uri="/struts-tags" prefix="s" %>
+ *			<s:set>
+ *			定义数组
+ *			<s:set value="%{new int[]{1,2,4,5,6,7,8,9}}" var="number" scope="request" />  
+ *			<s:property value="%{#request.number[3]}"/>  
+ *			<s:iterator value="%{#request.number}"> 
+ *			<s:property/>  <br>	
+ *			</s:iterator> 
+ *			定义集合
+ *			<s:set value="%{{'a','b','c','d' }}" var="list" scope="request"  /><br>
+ *			定义
+ *			<s:set value="%{#{'姓名':'小狼','年龄':16,'性别':'男' }}" var="map" scope="page"/> <br>
+ *			<s:property value="%{#attr.map.姓名}"/>
+ *			<s:iterator value="%{#attr.map}"> 
+ *			<s:property value="key"/><s:property value="value"/> 
+ *			</s:iterator>
+ *
+ *
+ *········Ognl投影
+ *			a.“?#”：投影（过滤）所有符合条件的集合 如：users.{?#this.age > }
+ *			b.“^#”：投影（过滤）第一个符合条件的元素，如：users.{^#this.age > 10}；
+ *			c.“$#”：投影（过滤）最后一个符合条件的元素，如：users.{$#this.age >10 } 。?
+ *			“this”表示集合中的元素； 投影（过滤）操作返回的是一个集合，可以使用索引取得集合中指定的元素，如： users.{?#this.age >10 }[0]。
+ *
+ *
+ *·······struts2拦截器
+ *			Struts 2大多数核心功能是通过拦截器实现的，每个拦截器完成某项功能
+ *			拦截器方法在Action执行之前或者之后执行
+ *			一种拦截action执行的对象，他能在action执行之前先执行在action返回之后后返回
+ *		一.编写拦截器         两种方式编写拦截器类  1.实现Interceptor接口      2.继承AbstractInterceptor类，			
+ *		ActionInvocation arg0   arg0.invoke();字符串类型    正常时返回的字符串
+ *		二.配置拦截器
+ *			<interceptors>
+ *			<interceptor name="自定义名称1" class="包名.类名（拦截器）" />
+ *			<interceptor-stack name="自定义名称2">
+ *				<interceptor-ref name="defaultStack"></interceptor-ref>（必有）
+ *				<interceptor-ref name="自定义名称1"></interceptor-ref>
+ *			</interceptor-stack>
+ *			</interceptors>
+ *		三.启用拦截器
+ *			1.<default-interceptor-ref name="自定义名称2"></default-interceptor-ref>
+ *			2.在action中单独配置<interceptor-ref name=""></interceptor-ref>
+ * 	 	默认拦截器栈
+ *			struts.xml中定义一个defaultStack拦截器栈，并将其指定为默认拦截器 
+ *			只要在定义包的过程中继承struts-default包，那么defaultStack将是默认的拦截器栈
+ *			<package name="default" extends="struts-default"></package>
+ *
+ *
+ *
+ *········Struts2注解
+ *		注解：写在类中的配置信息，作为类的额外描述。
+ *			Struts2实现注解的步骤：
+ *		一.引入支持Struts2支持注解 开发jar包：
+ *   			struts2-convention-plugin-xxxxx.jar（支持Struts2框架注解开发的jar包 xxxxx是版本号） 
+ *		二.Struts2使用注解开发需要遵循一些规范： 
+ *            1，Action要必须继承ActionSupport父类；
+ *            2，Action所在的包名必须以action 结尾。
+ *		三，action中常用的注解：
+ *			应用在类上
+ *		 1，@ParentPackage:对应xml配置文件中的package的父包，一般需要继承struts-default。
+ *	     2，@Namespace:对应配置文件中的nameSpace，命名空间。 *
+ *			应用在方法上
+ *		 3，写在方法前边的注解：
+ *			@Action，这个注解对应<action>节点
+ *			value()，表示action的请求名称，也就是<action>节点中的name属性；
+ *			results()，表示action的多个result；这个属性是一个数组属性，因此可以定义多个Result；
+ *			interceptorRefs()，表示action的多个拦截器。这个属性也是一个数组属性，因此可以定义多个拦截器； 
+ *			exceptionMappings()，这是异常属性，它是一个ExceptionMapping的数组属性，表示action的异常，在使用时必须引用相应的拦截器
+ *		 4，action中最常用的results中单个result注解的配置 
+ *			@Result，这个注解对应了<result>节点。这个注解只能应用于action类上。
+ *			这个注解中也有几个属性：
+ *			name()，表示action方法的返回值，也就是<result>节点的name属性，默认情况下是【success】；
+ *			location()，表示view层文件的位置，可以是相对路径，也可以是绝对路径；
+ *			type()，是result的类型，比如redirect，不指定情况下，框架默认的是dispatcher
+ *		事例
+ *			类名上
+ *		 @ParentPackage("继承的struts.xml中的包（可继承抽象包）")
+ *			方法名上代替method属性
+ *		 @Action(value="请求名称",results={
+ *			@Result(name="返回的字符串"（可不写）,location="/需要转的页面",type="result的类型"（可不写）),
+ *			@Result(name="返回的字符串"（可不写）,location="/需要转的页面",type="result的类型"（可不写）),
+ *			})
+ **·······spring
+ *		1.jar包  			 必须有struts2-spring-plugin-2.3.15.1jar
+ *		2.web.xml配置spring的listener (它是用来解析spring配置文件 加载spring容器的)
+ *			<!--如果不配置，默认找web-inf/applicationContext.xml
+ *   		<context-param>
+ *			<param-name>contextConfigLocation</param-name>
+ *			<param-value>classpath:applicationContext.xml</param-value>
+ *			</context-param> -->
+ *			<listener> 	
+ *			<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+ *			</listener>
+ *		3.web.xml中配置struts2的核心控制器
+ *		4.开发dao  service  action 并用接口类型声明依赖的属性
+ * 			提供setter方法
+ *		5.spring配置文件中 配置action service dao 并注入依赖
+ *			<bean id="userAction" class="action.UserAction" scope="prototype">
+ *		6.struts2的配置文件中(struts.xml) action节点 class属性用action在spring中的bean id ,不再用类的名字
+ *
+ *		注入集合类型
+ *		<!-- 给数组注入值 -->  					<!-- 给list注入值 list 中可以有相当的对象 -->  
+ *			<property name="empName">  			<property name="empList">  
+ *  			<list>  						   <list>  
+ *       		<value>小明</value>					 <ref bean="emp2" />  
+ *       		<value>小强</value>  					 <ref bean="emp1"/>  
+ *       		<value>小红</value>  					 <ref bean="emp1"/>  
+ *   			</list>  							</list> 
+ *			</property>   						</property>   
+ *		<!-- 给set注入值 set不能有相同的对象 -->  		<!-- 给属性集合配置 -->  
+ *		<property name="empsets">  				<property name="pp">  
+ *		<set>  									<props>  
+ *   		<ref bean="emp1" />						 <prop key="pp1">abcd</prop>  
+ *    		<ref bean="emp2"/>						 <prop key="pp2">hello</prop>  
+ *    		<ref bean="emp2"/>					</props>  
+ *     		<ref bean="emp2"/>  				</property>  
+ *      	<ref bean="emp2"/>  
+ *   	</set>  
+ *		</property>   
+ *··········什么是di和ioc    依赖注入(DI)  控制权的转移   不自动创建对象    
+ *··········轻量级框架 ioc的容器   面向切面的编程
+ *··········redis   键值对对应      主要作用是缓存        nosql的数据库
+ *··········运行时获得类的信息     根据类名称实例化类
+ *
+ *·····序列化
+ *		需要序列化的类实现接口implements Serializable 
+ *		//打开文件输出流
+ *		FileOutputStream fout=new FileOutputStream("文件存储的地址");
+ *		//对象的输出流套接到 文件输出流将对象存成文件
+ *		ObjectOutputStream 	out=new ObjectOutputStream(fout);
+ *		//将封装类写入
+ *		out.writeObject(实例化的封装类);
+ *		//关流
+ * 		out.close(); 	fout.close();
+ *·····反序列化
+ *		ObjectInputStream oin=new 	ObjectInputStream(new FileInputStream("文件读取的地址"));
+ *		封装类型    对象名=(强转成封装类) oin.readObject();
+ *		关流     oin.close();
+ *······spring  拦截器中得到bean节点
+ *			//1.得到ServletContext对象
+ *			ServletContext sac=ServletActionContext.getServletContext();
+ *			//2.得到listener解析的spring的容器（工厂）对象
+ *			WebApplicationContext ctx=WebApplicationContextUtils.getWebApplicationContext(sac);
+ *			//得到spring的bean节点
+ *			ctx.getBean("");
+ *······得到bean节点
+ *			ApplicationContext act=new ClassPathXmlApplicationContext("/spring/*.xml");//得到spring容器
+ * 			接口或者类  变量名 =act.getBean(接口或者类.class);
+ *········spring反射	运行时根据类的信息实例化这个类		
+ *········bean节点scope设置 singleton单例       prototype每次创建都会获得新的
+ *			getDeclaredMethods和getMethods区别
+ *
+ *········Spring注解
+ *	   一、1.1 注解IOC
+ *			Action类的注解使用：
+ *			@Scope("prototype")   属性singleton单例       prototype每次创建都会获得新的
+ *			@Controller("struts.xml中action的class的提交地址")类名上		
+ *		1.2 业务逻辑类的注解使用：
+ *			@Service(不写默认类名)类名上
+ *		1.3 Dao类的注解使用：
+ *			@Repository 
+ *			类名
+ *			@Autowired  需配置DataSource     sql包
+ *			public void setDataSource(DataSource ds){
+ *			super.setDataSource(ds);
+ *			}
+ *		2.Dao、业务逻辑类、action应用注解注入依赖
+ *			@Autowired:自动按类型注入 可以用在属性 setter方法 或者 构造方法
+ *			@Resource(name= "feeInfoService")：自动按照名称注入
+ *		3.3.配置自动扫描，包中的应用了注解的类自动加入spring容器
+ *			<context:component-scan base-package="service.impl"/>需要注入service的包路径
+ *			<context:component-scan base-package="action"/>需要注入action的包路径
+ *			<context:component-scan base-package="dao.impl"/>需要注入dao的包路径
+ *	 二、注解Aop
+ *		1.	@Aspect
+ *			@Service//一般为Service
+ *			Aop类名
+ *			@Pointcut("execution(* service.impl.*.*(..))")   拦截路径
+ *			public void 自定义类名() {}	 
+ *			@Before(value="自定义类名()") 执行之前执行的方法名上
+ *			@After(value="自定义类名()")	执行之后执行的方法名上
+ *			@Around("自定义类名()")		环绕方法名上	
+ *		2.配置文件启用aspectj风格的注解
+ *			<context:component-scan base-package="advice"/>需要注入advice的包路径
+ * 			<aop:aspectj-autoproxy/>启动拦截
+ *	三、启用注解式事物
+ *			<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" autowire="no">
+ *   		<property name="dataSource" ref="ds"/>
+ *			</bean>
+ * 			<tx:annotation-driven transaction-manager="txManager"/><!--启动注解方式的事务控制-->
+ *		@Transactional(readOnly=true) //只读的，对于查询   类名上
+ *		@Transactional //普通的 需要事物的   增删改   类名上
+ *
+ *
+ *··················测试类
+ *
+ *			JUnit:java的白盒测试单元测试框架，实现自动化批量的测试。
+ *			java/JUnit/JUnit Test case
+ *				导包import org.junit.Before;
+ *			@Before 在测试方法之前执行
+ *			@Test   表明是测试方法
+ *			@After  在测试方法执行之后执行 常用于释放资源
+ *
+ *
+ *
+ *
+ *······hibernate
+ *			// 1.解析主配置文件
+ *			Configuration cf = new Configuration().configure();
+ *			// 2.解析映射文件 从而获得一个sessionFactory对象 类似于 datasource
+ *			SessionFactory sf = cf.buildSessionFactory();
+ *			// 3.打开数据库连接session回话 类似于jdbc的connection
+ *			Session se = sf.openSession();
+ *		se.flush();可以强制进行从内存到数据库的同步
+ *		se.clear();强制清除Session缓存
+ *		se.evict(obj)?：会把指定的缓冲对象进行清除
+ *			// 4.开始事物                          查询的时候不需要开启事物
+ *			se.beginTransaction();
+ *			// 5.调用save保存顾客对象
+ *			se.delete(对象实体类);删除, update(对象实体类);修改,se.save(对象实体类)新增
+ *
+ *		    查询  se.load(实体类名.class,数据库的id);Load 受class节点的lazy属性影响，默认是延迟检索的，
+ *					不访问除id以外的属性，不执行sql.get不受这个属性影响(下次课详细说)
+ *		    查询  se.get(实体类名.class,数据库的id);当按照Id查不到数据时 ，get返回null,load抛异常
+ *
+ *			// 6.提交事物
+ *			se.getTransaction().commit();
+ *			// 7.关闭session 相当于关闭数据库连接
+ *			se.close();
+ *
+ *			hibernate.cfg.xml
+ *			<session-factory>节点中配置
+ *			<property name="show_sql">true</property>打印sql语句
+ *			<mapping resource="entity/Tcustomer.hbm.xml" />  实体类映射的xml文件路径
+ *			</session-factory>
+ *	实体对象的状态
+ *		瞬时状态(Transient)
+ *			刚用new语句创建，还没有被持久化，且不处于Session的缓存中（或者已经删除并提交事务之后）数据库没有 只在内存中
+ *		持久状态(Persistent)
+ *			已经被持久化，且加入到Session的缓存中（数据库中有 并且session缓存中有）
+ *		游离状态(Detached)
+ *			已经被持久化（数据库中有），但不再处于Session的缓存中（缓存中没有）
+
+ */
+}

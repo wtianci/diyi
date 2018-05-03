@@ -1,0 +1,17 @@
+电脑环境 
+1.安装.net2.0
+2.支持IE8-IE11，设置为兼容模式，添加网站为信任站点
+3.注册表配置regedit，
+
+计算机\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\.NETFramework
+添加32位  EnableIEhosting 值为1
+
+IE访问站点
+http://192.168.2.201/STARLIMS10.tdi/start.lims
+
+下载ConfigSTARLIMSCAS  vbscript文件
+修改Call RunAndReport("192.168.2.201", "2.0.50727")
+
+
+
+登陆账号 MFK----13893088115

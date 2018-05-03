@@ -1,0 +1,24 @@
+git  
+配置信息
+命令：
+	git config --global user.name "名字"
+	git config --global user.email "邮箱"
+
+	git init 初始化
+	git status 查看仓库信息
+		红色字体未提交到暂存仓库
+		绿色字体添加到暂存区后
+git三个区 工作区  暂存区  本地仓库
+	开发的项目再工作区
+	
+	git add -A 添加暂存区  A  all缩写  所有文件添加暂存区
+	单独提交文件   git add 文件名
+	git commit -m"" 把所有东西放在本地仓库   引号里面给自己看注释
+	
+	git log 列出所有上传记录  
+	黄色字体 commit sa123123da123sdsxcz
+	回到以前的上传记录
+	1.git reset --hard sa123123da123sdsxcz
+	2.git log --pretty="上传的名字"
+gti Hub
+	clip < ~/.ssh/id_rsa.pub
